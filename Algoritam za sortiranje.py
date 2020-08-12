@@ -129,28 +129,27 @@ def bogosort():
             t2 = lst[y]
             lst[x] = t2
             lst[y] = t
-            
-        for loop in range(0, brojelemenata-1, 1):
+
+        for loop in range(0, brojelemenata-1, 1): #provera
             if lst[loop] < lst[loop+1]:
                 counter += 1
                 mark2 = loop
                 mark1 = loop+1
                 visualize()
             else:
-                break
+                break #opet random ako nije dobar poredak
             if (counter == brojelemenata-1):
-                
                 donevisualize()
 
 def selectionsort():
     global mark1
     global mark2
-    mark2 = -1
+    mark2 = -1 #ne koristim
     for i in range(brojelemenata):
         x = lst[i]
         j = i - 1
         while j >= 0:
-            if x < lst[j]:
+            if x < lst[j]: #pomeranje unazad
                 lst[j+1] = lst[j]
                 lst[j] = x
                 j -= 1
