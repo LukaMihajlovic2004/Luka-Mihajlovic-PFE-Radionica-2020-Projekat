@@ -76,7 +76,7 @@ def visualize():
         pozx = sirinaelementa * i
         pozy = 0
         pg.draw.rect(prozor,(boja),(pozx,pozy,sirinaelementa,lst[i]))
-        pg.display.update()
+    pg.display.update()
 
 def generate(element):
     #kreiranje liste
@@ -194,5 +194,3 @@ while True:
     pg.time.wait(31)
     pg.display.update()
     dugme()
-
-
