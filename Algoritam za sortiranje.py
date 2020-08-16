@@ -53,6 +53,13 @@ prozor.blit((font.render(("Bubble sort"), True, (255,255,255))),(bubblecenter[0]
 prozor.blit((font.render(("Bogosort"), True, (255,255,255))),(bogocenter[0] - dugmesir / 2.5, bogocenter[1] - dugmevis / 8))
 prozor.blit((font.render(("Selection sort"), True, (255,255,255))),(selectioncenter[0] - dugmesir / 2.5, selectioncenter[1] - dugmevis / 8))
 
+def provera(element):
+    global elementproveren
+    try:
+        elementproveren = int(element)
+    except ValueError:
+        elementproveren = random.randint(10,250)
+
 def donevisualize():
     boja = (0,255,0)
     prozor.fill((255,255,255))
@@ -78,13 +85,13 @@ def visualize():
         pg.draw.rect(prozor,(boja),(pozx,pozy,sirinaelementa,lst[i]))
     pg.display.update()
 
-def generate(element):
+def generate():
     #kreiranje liste
     global mark1
     global mark2
     (mark1, mark2) = (-1,-1)
     global brojelemenata
-    brojelemenata = int(element)
+    brojelemenata = elementproveren
     global lst
     lst = []
 
@@ -177,16 +184,19 @@ def dugme():
         if event.type == pg.MOUSEBUTTONDOWN:
             
             if ((pozmisa[0] < bubblecenter[0] + dugmesir / 2) and (pozmisa[0] > bubblecenter[0] - dugmesir / 2)) and ((pozmisa[1] < bubblecenter[1] + dugmevis / 2) and (pozmisa[1] > bubblecenter[1] - dugmevis / 2)):
-                generate(element)
+                provera(element)
+                generate()
                 bubblesort()
                 donevisualize()
                 
             elif ((pozmisa[0] < bogocenter[0] + dugmesir / 2) and (pozmisa[0] > bogocenter[0] - dugmesir / 2)) and ((pozmisa[1] < bogocenter[1] + dugmevis / 2) and (pozmisa[1] > bogocenter[1] - dugmevis / 2)):
-                generate(element)
+                provera(element)
+                generate()
                 bogosort()
 
             elif ((pozmisa[0] < selectioncenter[0] + dugmesir / 2) and (pozmisa[0] > selectioncenter[0] - dugmesir / 2)) and ((pozmisa[1] < selectioncenter[1] + dugmevis / 2) and (pozmisa[1] > selectioncenter[1] - dugmevis / 2)):
-                generate(element)
+                provera(element)
+                generate()
                 selectionsort()
                 donevisualize()
 
