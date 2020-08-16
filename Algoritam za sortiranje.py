@@ -2,56 +2,65 @@ import pygame as pg
 import math, random
 pg.init()
 
-#promenljive
-global sirina
-global visina
-(sirina, visina) = (1080, 540)
-prozor = pg.display.set_mode((sirina,visina))
-prozor.fill((255,255,255))
+def main():
+    #promenljive
+    global sirina
+    global visina
+    (sirina, visina) = (1080, 540)
+    global prozor
+    prozor = pg.display.set_mode((sirina,visina))
+    prozor.fill((255,255,255))
 
-global dugmesir
-global dugmevis
-(dugmesir, dugmevis) = (150, 75)
+    global dugmesir
+    global dugmevis
+    (dugmesir, dugmevis) = (150, 75)
 
-(sirinasred, visinasred) = (int(sirina / 2), int(visina / 2))
+    (sirinasred, visinasred) = (int(sirina / 2), int(visina / 2))
 
-#dimenzije i podaci za bubble sort dugme
-global bubblecenter
-global bubblesirina
-global bubblevisina
-bubblecenter = (142, 104)
-bubblesirina = int(sirinasred / 8)
-bubblevisina = int(visinasred / 4)
+    #dimenzije i podaci za bubble sort dugme
+    global bubblecenter
+    global bubblesirina
+    global bubblevisina
+    bubblecenter = (142, 104)
+    bubblesirina = int(sirinasred / 8)
+    bubblevisina = int(visinasred / 4)
 
-#dimenzije i podaci za bogosort dugme
-global bogocenter
-global bogosirina
-global bogovisina
-bogocenter = (sirinasred, 104)
-bogosirina = int(sirinasred)
-bogovisina = int(visinasred / 4)
+    #dimenzije i podaci za bogosort dugme
+    global bogocenter
+    global bogosirina
+    global bogovisina
+    bogocenter = (sirinasred, 104)
+    bogosirina = int(sirinasred)
+    bogovisina = int(visinasred / 4)
 
-#dimenzije i podaci za slection sort dugme
-global selectioncenter
-global selectionsirina
-global selectionvisina
-selectioncenter = (966, 104)
-selectionsirina = int(sirinasred * 1.666)
-selectionvisina = int(visinasred / 4)
+    #dimenzije i podaci za slection sort dugme
+    global selectioncenter
+    global selectionsirina
+    global selectionvisina
+    selectioncenter = (966, 104)
+    selectionsirina = int(sirinasred * 1.666)
+    selectionvisina = int(visinasred / 4)
 
-#slova i unos textbox
-global font
-font = pg.font.Font(None,30)
-unostekst = ''
+    #slova i unos textbox
+    global font
+    font = pg.font.Font(None,30)
+    global unostekst
+    unostekst = ''
 
-#crtanje
-pg.draw.rect(prozor,(50,50,200),(int(bubblesirina), int(bubblevisina), int(dugmesir) , int(dugmevis)))
-pg.draw.rect(prozor,(50,50,200),(int(bogosirina-dugmesir/1.6), int(bogovisina), int(dugmesir) , int(dugmevis)))
-pg.draw.rect(prozor,(50,50,200),(int(selectionsirina), int(selectionvisina), int(dugmesir) , int(dugmevis)))
-prozor.blit((font.render(("Broj elemenata:"), True, (0,0,0))),(25,475))
-prozor.blit((font.render(("Bubble sort"), True, (255,255,255))),(bubblecenter[0] - dugmesir / 2.5, bubblecenter[1] - dugmevis / 8))
-prozor.blit((font.render(("Bogosort"), True, (255,255,255))),(bogocenter[0] - dugmesir / 2.5, bogocenter[1] - dugmevis / 8))
-prozor.blit((font.render(("Selection sort"), True, (255,255,255))),(selectioncenter[0] - dugmesir / 2.5, selectioncenter[1] - dugmevis / 8))
+    #crtanje
+    pg.draw.rect(prozor,(50,50,200),(int(bubblesirina), int(bubblevisina), int(dugmesir) , int(dugmevis)))
+    pg.draw.rect(prozor,(50,50,200),(int(bogosirina-dugmesir/1.6), int(bogovisina), int(dugmesir) , int(dugmevis)))
+    pg.draw.rect(prozor,(50,50,200),(int(selectionsirina), int(selectionvisina), int(dugmesir) , int(dugmevis)))
+    prozor.blit((font.render(("Broj elemenata:"), True, (0,0,0))),(25,475))
+    prozor.blit((font.render(("Bubble sort"), True, (255,255,255))),(bubblecenter[0] - dugmesir / 2.5, bubblecenter[1] - dugmevis / 8))
+    prozor.blit((font.render(("Bogosort"), True, (255,255,255))),(bogocenter[0] - dugmesir / 2.5, bogocenter[1] - dugmevis / 8))
+    prozor.blit((font.render(("Selection sort"), True, (255,255,255))),(selectioncenter[0] - dugmesir / 2.5, selectioncenter[1] - dugmevis / 8))
+
+main()
+
+def retry():
+    prozor.fill((255,255,255))
+    main()
 
 def provera(element):
     global elementproveren
@@ -70,6 +79,8 @@ def donevisualize():
         pozy = 0
         pg.draw.rect(prozor,(boja),(pozx,pozy,sirinaelementa,lst[i]))
         pg.display.update()
+    pg.time.wait(10000)
+    retry()
 
 def visualize():
     boja = (0,0,0)
@@ -204,3 +215,5 @@ while True:
     pg.time.wait(31)
     pg.display.update()
     dugme()
+
+
